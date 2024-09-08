@@ -11,11 +11,6 @@ function main() {
 
   const facilities = GetFacilities(credentials.token, society_id)
   if(debug)console.log(facilities)
-  /*
-  //facility_id: jsonData.data[x]._id,
-  //facility_name: jsonData.data[x]._name,
-  //facility_is_bookable: jsonData.data[x].booking
-  */
 
   var currentDate = new Date();
   // Get the timestamp in milliseconds since epoch
@@ -71,7 +66,8 @@ function main() {
 
   CreateCalendarEvents(list_of_reservations_to_create)
 }
-  
+
+// Signing in to BoAppa in order to fetch a Bearer token
 function LoginToBoAppaAndGetCredentials(){
   var boappa_username = PropertiesService.getScriptProperties().getProperty('boappa_username');
   var boappa_password = PropertiesService.getScriptProperties().getProperty('boappa_password');
@@ -111,6 +107,7 @@ function LoginToBoAppaAndGetCredentials(){
   }
 }
 
+// Fetches soceity id
 function GetSocietyId(user_id, token){
   const url = `${boappa_api_url}/units/get-user-units/${user_id}`
 
@@ -134,6 +131,7 @@ function GetSocietyId(user_id, token){
   return null
 }
 
+// Fetches first and lastname from api
 function GetUserNameAndSurname(user_id, token){
   const url = `${boappa_api_url}/users/user/${user_id}?populate=media`
 
@@ -160,6 +158,7 @@ function GetUserNameAndSurname(user_id, token){
   return null
 }
 
+// returns all facilities for a specific society_id
 function GetFacilities(token, society_id){
   const url = `${boappa_api_url}/facilities/get-per-societies/?populate=media`
 
@@ -199,6 +198,7 @@ function GetFacilities(token, society_id){
   return null
 }
 
+// Looks for a facility id in a list of facilities
 function GetFacilityNameFromFacilityId(facility_id, facilities)
 {
   for(var x in facilities)
@@ -208,8 +208,11 @@ function GetFacilityNameFromFacilityId(facility_id, facilities)
         return facilities[x].facility_name;
       }
   }
+  console.error(`Could not find facility id: ${facility_id}`)
+  return null;
 }
 
+// Iterates over each facility and fetches its reservations
 function GetFacilitiesReservations(token, listOfFacilities, fromDate, toDate){
   var facilityReservations = []
 
@@ -251,7 +254,6 @@ function GetFacilityReservations(token, facilityObj, fromDate, toDate){
 }
 
 function CreateCalendarEvents(list_of_reservations_to_create) {
-  //var calendar = CalendarApp.getDefaultCalendar();
   var calendar_id = PropertiesService.getScriptProperties().getProperty('calendar_id');
   var calendar = CalendarApp.getCalendarById(calendar_id);
 
@@ -261,7 +263,7 @@ function CreateCalendarEvents(list_of_reservations_to_create) {
   end.setDate(now.getDate() + days_to_search);
 
   var existingEvents = calendar.getEvents(now, end);
-  
+
   // Extract titles to keep from the list of reservations
   var titlesToKeep = list_of_reservations_to_create.map(function(reservation) {
     return reservation.title;
@@ -308,14 +310,6 @@ function CreateCalendarEvents(list_of_reservations_to_create) {
         var _end = new Date(new Date(reservation.end_date).getTime() + timeZoneOffsetHours * 60 * 60 * 1000);
         
         calendar.createEvent(reservation.title, _start, _end);
-
-        /*
-        , {
-          //description: eventDescription,
-          //location: eventLocation,
-          timeZone: swedishTimeZone
-        }
-        */
       }
   }
 }
