@@ -261,15 +261,13 @@ function CreateCalendarEvents(list_of_reservations_to_create) {
   end.setDate(now.getDate() + days_to_search);
 
   var existingEvents = calendar.getEvents(now, end);
-  var existingTitles = existingEvents.map(function(event) {
-    return event.getTitle();
-  });
-
+  
   // Extract titles to keep from the list of reservations
   var titlesToKeep = list_of_reservations_to_create.map(function(reservation) {
     return reservation.title;
   });
 
+  // Deletes all entries withing the time frame if the titles are not the same as the ones that shall be added
   for (var i = 0; i < existingEvents.length; i++) {
     var event = existingEvents[i];
     var eventTitle = event.getTitle();
