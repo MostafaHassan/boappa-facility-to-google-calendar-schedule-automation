@@ -281,29 +281,43 @@ function CreateCalendarEvents(list_of_reservations_to_create) {
       Logger.log('Deleted event: ' + eventTitle);
     }
   }
-  
 
   for(x in list_of_reservations_to_create)
   {
-    var reservation = list_of_reservations_to_create[x];
+      var reservation = list_of_reservations_to_create[x];
+      var found = false;
 
-      if(debug)console.log(`Creating event: ${reservation.title}`)
+      for (var i = 0; i < existingEvents.length; i++) {
+        var event = existingEvents[i];
+        var eventTitle = event.getTitle();
 
-      var timeZoneOffsetMinutes = new Date().getTimezoneOffset(); // Offset in minutes
-      var timeZoneOffsetHours = timeZoneOffsetMinutes / 60; // Convert to hours
-
-      // Adjust the time for the desired time zone
-      var _start = new Date(new Date(reservation.start_date).getTime() + timeZoneOffsetHours * 60 * 60 * 1000);
-      var _end = new Date(new Date(reservation.end_date).getTime() + timeZoneOffsetHours * 60 * 60 * 1000);
-      
-      calendar.createEvent(reservation.title, _start, _end);
-
-      /*
-      , {
-        //description: eventDescription,
-        //location: eventLocation,
-        timeZone: swedishTimeZone
+        if(eventTitle === reservation.title)
+        {
+          found = true;
+          break;
+        }
       }
-      */
+
+      if(found == false)
+      {
+        if(debug)console.log(`Creating event: ${reservation.title}`)
+
+        var timeZoneOffsetMinutes = new Date().getTimezoneOffset(); // Offset in minutes
+        var timeZoneOffsetHours = timeZoneOffsetMinutes / 60; // Convert to hours
+
+        // Adjust the time for the desired time zone
+        var _start = new Date(new Date(reservation.start_date).getTime() + timeZoneOffsetHours * 60 * 60 * 1000);
+        var _end = new Date(new Date(reservation.end_date).getTime() + timeZoneOffsetHours * 60 * 60 * 1000);
+        
+        calendar.createEvent(reservation.title, _start, _end);
+
+        /*
+        , {
+          //description: eventDescription,
+          //location: eventLocation,
+          timeZone: swedishTimeZone
+        }
+        */
+      }
   }
 }
