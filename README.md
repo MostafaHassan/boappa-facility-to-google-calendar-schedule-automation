@@ -32,7 +32,7 @@ This guide will walk you through setting up the Boappa to Google Calendar Schedu
 
     - **boappa_username**: Your Boappa email address.
     - **boappa_password**: Your Boappa password.
-    - **calendar-id**: The Calendar ID you retrieved from Google Calendar.
+    - **calendar_id**: The Calendar ID you retrieved from Google Calendar.
 
    For each property:
    - Click **“Add Row”**.
