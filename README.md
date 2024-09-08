@@ -1,5 +1,18 @@
 # Boappa to Google Calendar Schedule Automation
 
+## Synchronization Details
+
+- **One-way Sync:** The synchronization is one-way only, from Boappa to Google Calendar. Changes made in Google Calendar will not be reflected back in Boappa.
+- **Interval:** Synchronization occurs every x hours (it is up to you).
+- **Time Range:** Only bookings up to 30 days in advance are synchronized (you can change that in the code).
+- **Calendar:** You should create a new calendar in your google calendar for the reservations, as you might otherwise lose events.
+- **Event Cleanup:** All events within the 30-day (can be modified) period are deleted before new reservations are added. This ensures that duplicates are avoided and any canceled bookings are removed.
+
+## Summary
+
+This automation streamlines the booking management process by keeping our Google Calendar up-to-date with the latest bookings from Boappa, reducing manual checks and administrative tasks.
+
+## Implementation
 This guide will walk you through setting up the Boappa to Google Calendar Schedule Automation integration. This tool automatically creates events in Google Calendar based on whole-day facility bookings made in Boappa.
 
 ## Prerequisites
