@@ -40,4 +40,21 @@ This guide will walk you through setting up the Boappa to Google Calendar Schedu
    - Click **“Save”**.
   
 ### 4. Add Script
-Now copy the script (kod.js) into edit mode for that new google apps project. 
+
+1. Copy the script (kod.js) into edit mode for your new Google Apps Script project.
+2. Paste the script code into the editor.
+
+### 5. Schedule the Script
+
+To ensure that the script runs automatically, follow these steps:
+
+1. In your Google Apps Script project, click on the clock icon **(Triggers)** in the left sidebar.
+2. Click on **“Add Trigger”** in the bottom-right corner.
+3. Set the following options:
+    - **Choose which function to run**: Select the function from your script that handles the scheduling.
+    - **Choose which deployment should run**: Select the default deployment.
+    - **Select event source**: Choose **“Time-driven”**.
+    - **Select type of time based trigger**: Choose the appropriate time interval (e.g., daily, hourly) based on how frequently you want to check for new bookings.
+4. Click **“Save”** to set up the trigger.
+
+With this setup, your script will now run automatically according to the schedule you specified, creating events in your Google Calendar based on your Boappa bookings.
