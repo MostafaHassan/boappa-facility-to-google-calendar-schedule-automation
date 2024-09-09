@@ -1,4 +1,4 @@
-# Boappa to Google Calendar Schedule Automation
+# Boappa to Google Calendar Facility Reservation Sync
 
 ## Synchronization Details
 
