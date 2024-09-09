@@ -309,7 +309,8 @@ function CreateCalendarEvents(list_of_reservations_to_create) {
         var _start = new Date(new Date(reservation.start_date).getTime() + timeZoneOffsetHours * 60 * 60 * 1000);
         var _end = new Date(new Date(reservation.end_date).getTime() + timeZoneOffsetHours * 60 * 60 * 1000);
         
-        calendar.createEvent(reservation.title, _start, _end);
+        var new_event = calendar.createEvent(reservation.title, _start, _end);
+        new_event.addPopupReminder(24 * 60); // 24 hours before the event
       }
   }
 }
