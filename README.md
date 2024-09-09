@@ -4,8 +4,9 @@
 
 - **One-way Sync:** The synchronization is one-way only, from Boappa to Google Calendar. Changes made in Google Calendar will not be reflected back in Boappa.
 - **Interval:** Synchronization occurs every x hours (it is up to you).
-- **Time Range:** Only bookings up to 30 days in advance are synchronized (you can change that in the code).
+- **Time Range:** Only bookings up to 30 days in advance are synchronized (can be adjusted as needed).
 - **Calendar:** You should create a new calendar in your google calendar for the reservations, as you might otherwise lose events.
+- **Calendar reminders:** The calendar will send a reminder 1 day in advance.
 - **Event Cleanup:** All events within the 30-day (can be modified) period are deleted before new reservations are added. This ensures that duplicates are avoided and any canceled bookings are removed.
 
 ## Summary
