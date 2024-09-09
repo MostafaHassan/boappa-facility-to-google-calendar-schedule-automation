@@ -1,5 +1,9 @@
 # Boappa to Google Calendar Facility Reservation Sync
 
+## Summary
+
+Boappa to Google Calendar Facility Reservation Sync is an integration that automatically fetches facility reservations from Boappa and creates corresponding events in your Google Calendar. This allows you to view upcoming reservations directly in your calendar widget, set alerts and notifications, and stay informed ahead of time. As a board member, this integration helps ensure you're prepared to grant access to facilities if necessary, streamlining your responsibilities and enhancing convenience.
+
 ## Synchronization Details
 
 - **One-way Sync:** The synchronization is one-way only, from Boappa to Google Calendar. Changes made in Google Calendar will not be reflected back in Boappa.
@@ -8,10 +12,6 @@
 - **Calendar:** You should create a new calendar in your google calendar for the reservations, as you might otherwise lose events.
 - **Calendar reminders:** The calendar will send a reminder 1 day in advance.
 - **Event Cleanup:** All events within the 30-day (can be modified) period are deleted before new reservations are added. This ensures that duplicates are avoided and any canceled bookings are removed.
-
-## Summary
-
-This automation streamlines the booking management process by keeping our Google Calendar up-to-date with the latest bookings from Boappa, reducing manual checks and administrative tasks.
 
 ## Implementation
 This guide will walk you through setting up the Boappa to Google Calendar Schedule Automation integration. This tool automatically creates events in Google Calendar based on whole-day facility bookings made in Boappa.
